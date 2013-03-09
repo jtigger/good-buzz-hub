@@ -1,4 +1,11 @@
-common-crow
-===========
+good-buzz-hub
+=============
 
-A retweeting twitterbot used by a group who want to get the word out without spamming people.
+Social Networking bot that nicely notifies followers of your group.
+
+The intent is to generate social media buzz without spamming people.
+
+We do this by scheduling tweets, Google+ posts, LinkedIn updates so that 
+a given follower is contacted at most once a day.
+
+
