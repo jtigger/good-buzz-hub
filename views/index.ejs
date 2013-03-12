@@ -1,14 +1,86 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%= title %> -- Home</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+    #signin {
+      float: right;
+    }
+    #splash {
+      text-align: center;
+      margin: 20px;
+      margin-left: auto;
+      margin-right: auto;
+
+      border-radius: 15px;
+      border-style: inset;
+    }
+    #hdiw-graphic {
+      float: left;
+    }
+
+    #getting-started {
+      clear: both;
+    }
+
+    .step-box {
+      float: left;
+      border-style: solid;
+      border-radius: 15px;
+      margin-left: 15px;
+      padding: 15px;
+      width: 25%;
+      height: 250px;
+    }
+
+    #hdiw-step1 {
+      clear: both;
+      background: #77DD77;
+    }
+    #hdiw-step2 {
+      background: #77EE77;
+    }
+    #hdiw-step3 {
+      background: #77FF77;
+    }
+    
+    </style>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <ul>
-      <li><a href="auth/twitter">Log in with Twitter</a></li>
-    </ul>
+    <div id="header">
+      <img src="/images/sm-trnsprnt-for-lght-bkgrnd.png" height="50px"/>
+      <span id="signin"><u>Sign In</u></span>
+    </div>
+    <div id="splash">
+      <img src="/images/twitterb-500x500.jpg" height="150px"/>
+    </div>
+    <div id="how-do-it-work-section">
+      <h1>How Do It Work?</h1>
+      <div id="hdiw-graphic"><img src="/images/whisper-tweets.jpg" /></div>
+      <div id="hdiw-explanation" width="50%">
+        <p>GoodBuzzHub is a smart and friendly auto-tweet bot.</p>
+        <p>Smart in that it knows not only who follows you, but who follows your fellow coaches.</p>
+        <p>Friendly in that it spreads the word about BV awesomeness without spamming our networks' followers.</p>
+      </div>
+    </div>
+    <div id="getting-started">
+      <h1>How Do I Get Started?</h1>
+      <p>Simply grant GoodBuzzHub permission to tweet on your behalf and let it take care of the rest.</p>
+      <p>Here's what happens:</p>
+      <div id="hdiw-step1" class="step-box">
+        <h2>Step 1</h2>
+        <p>You authorize GoodBuzzHub to tweet for you.</p>
+        <a href="auth/twitter"><img src="/images/sign-in-with-twitter-gray.png" /></a>
+      </div>
+      <div id="hdiw-step2" class="step-box">
+        <h2>Step 2</h2>
+        <p>Someone posts something on the BigVisible Twitter account.  GoodBuzzHub notices.</p>
+      </div>
+      <div id="hdiw-step3" class="step-box">
+        <h2>Step 3</h2>
+        <p>GoodBuzzHub schedules retweets such that any one follower of BV coaches does not get the same tweet more than once a day and stops once all our followers gets a retweet.</p>
+      </div>
+    </div>
   </body>
 </html>

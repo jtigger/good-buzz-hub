@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> -- Home</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+    #navbar {
+      margin-top: 10px;
+      background: #0000FF;
+      height: 55px;
+      border-radius: 15px;
+    }
+    #navbar ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 10px;
+      font-size: 0.90em;
+    }
+    #navbar ul li {
+      display: inline;
+      float: left;
+      margin-right: 10px;
+    }
+    #navbar ul li a {
+      display: block;
+      color: white;
+      padding: 10px;
+      border-radius: 15px;
+    }
+    #navbar ul li a:hover {
+      color: yellow;
+      background: #0077FF;
+    }
+    #thank-you {
+      margin-top:50px;
+    }
+    #ty-text {
+      float: left;
+      width: 50%;
+    }
+    #ty-img {
+      width: 40%;
+      margin-left: auto;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <img src="/images/sm-trnsprnt-for-lght-bkgrnd.png" height="50px"/>
+      <span id="signin">Welcome, Joe</span>
+    </div>
+    <div id="navbar">
+      <ul>
+        <li><a href="/profile">My Profile</a></li>
+        <li><a href="/bv_buzz">BV Buzz</a></li>
+        <li><a href="/deauth">De-Authorize</a></li>
+        <li></li>
+      </ul>
+    </div>
+    <div id="thank-you">
+      <div id="ty-text">
+        <h1>Sweet!  We're Good To Go!</h1>
+        <p>Thanks!  Now, GoodBuzzHub is authorized to tweet on your behalf.</p>
+        <p>Now, you can sit back, relax and enjoy sharing the awesomesauce that is BV, automatically.</p>
+      </div>
+      <div id="ty-img">
+        <img src="/images/thumbs-up.jpg" height="200px"/>
+      </div>
+    </div>
+  </body>
+</html>
