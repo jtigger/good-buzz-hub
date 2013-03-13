@@ -1,6 +1,7 @@
 var twitter = require('ntwitter')
   , OAuth = require('../node_modules/ntwitter/node_modules/oauth').OAuth
   , credentials = require('../../credentials.js')
+  , Spoke = require('../models/Spoke')
 
 var creds = new credentials().twitter();
 var oa = new OAuth(
@@ -23,8 +24,8 @@ exports.auth = function(req, res) {
 		else {
 			req.session.oauth = {};
 			req.session.oauth.token = oauth_token;
-			console.log('oauth.token: ' + req.session.oauth.token);
 			req.session.oauth.token_secret = oauth_token_secret;
+			console.log('oauth.token: ' + req.session.oauth.token);
 			console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
 			res.redirect('https://twitter.com/oauth/authenticate?oauth_token='+oauth_token)
 	}
@@ -42,36 +43,35 @@ exports.auth_return = function(req, res, next){
 		function(error, oauth_access_token, oauth_access_token_secret, results){
 			if (error){
 				console.log(error);
-				res.send("yeah something broke.");
+				res.render('auth_failure', { title: 'Good Buzz Hub' });
 			} else {
-				req.session.oauth.access_token = oauth_access_token;
-				req.session.oauth.access_token_secret = oauth_access_token_secret;
-				console.log(results);
-				var userCreds = { consumer_key : creds.consumer_key, 
-				                  consumer_secret : creds.consumer_secret,
-				                  access_token_key : oauth_access_token, 
-				                  access_token_secret : oauth_access_token_secret };
-				                   
-				var twit = new twitter(userCreds);
-				var now = new Date();
-				twit.showStatus(results.user_id, function(err, data) {
-          if(err) {
-            console.log(err);
-            res.send("oops!  Couldn't seem to log into Twitter.  :(");
-          } else {
-            console.log(data)
-    				res.send("worked. nice one.");
-          }
-				});
-        twit.updateStatus('Hello, world. (over SSL)', function(err, data) {
-          if(err) {
-            console.log(err);
-            res.send("oops!  Couldn't seem to log into Twitter.  :(");
-          } else {
-            console.log(data)
-    				res.send("worked. nice one.");
-          }
-        });
+			  var spoke = {
+			    first_name : "(first-name)",
+			    last_name : "(last-name)",
+			    twitter_user_id : results.user_id,
+			    twitter_screen_name : results.screen_name,
+			    twitter_access_token_key : oauth_access_token,
+			    twitter_access_token_secret : oauth_access_token_secret
+			  };
+			  Spoke.create( spoke, function(err) {
+			    if (err) return next(err);
+  				console.log(results);
+  				var userCreds = { consumer_key : creds.consumer_key, 
+  				                  consumer_secret : creds.consumer_secret,
+  				                  access_token_key : oauth_access_token, 
+  				                  access_token_secret : oauth_access_token_secret };
+
+  				var twit = new twitter(userCreds);
+          twit.updateStatus('@BigVisible is awesome!', function(err, data) {
+            if(err) {
+              console.log(err);
+              res.render('auth_failure', { title: 'Good Buzz Hub' });
+            } else {
+              console.log(data)
+    			    res.render('auth_success', { title: 'Good Buzz Hub' });
+            }
+          });
+			  });
 			}
 		}
 		);

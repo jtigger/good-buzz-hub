@@ -32,12 +32,14 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/auth/twitter', function(req,res) {
-  res.render('twitter_auth');
-});
-app.get('/auth/twitter/callback', function(req, res) {
-  res.render('auth_success', { title: 'Good Buzz Hub' });
-});
+app.get('/auth/twitter', twitter.auth);
+app.get('/auth/twitter/callback', twitter.auth_return);
+// app.get('/auth/twitter', function(req,res) {
+//   res.render('twitter_auth');
+// });
+// app.get('/auth/twitter/callback', function(req, res) {
+//   res.render('auth_success', { title: 'Good Buzz Hub' });
+// });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
