@@ -1,19 +1,8 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  width: 700px;
-  font-size: 100%;
   padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-h1 {
-  font-size: 1.5em;
-}
-h2 {
-  font-size: 1.1em;
-}
-
-#signin {
-  float: right;
+a {
+  color: #00B7FF;
 }
